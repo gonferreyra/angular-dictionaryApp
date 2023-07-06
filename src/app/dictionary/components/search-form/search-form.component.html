@@ -1,0 +1,10 @@
+<form class="d-flex flex-column gap-3">
+  <input [formControl]="searchValue" type="text" class="form-control col-md" />
+  <button
+    (click)="sendToServiceSearchWord(); $event.preventDefault()"
+    type="submit"
+    class="btn btn-dark col-md"
+  >
+    Search
+  </button>
+</form>

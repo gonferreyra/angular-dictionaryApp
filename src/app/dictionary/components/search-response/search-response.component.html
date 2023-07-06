@@ -1,0 +1,33 @@
+<div class="apiResponseContainer">
+  <div class="mt-4 mb-4" *ngFor="let word of searchWord">
+    <h2 class="text-white">
+      <span class="text-black">Word:</span> {{ word.word | uppercase }}
+    </h2>
+    <div>
+      <div *ngIf="word.phonetic">
+        <p class="text-white">
+          <span class="text-black">phonetic: </span>{{ word.phonetic }}
+        </p>
+      </div>
+      <div *ngFor="let meanings of word.meanings">
+        <p class="text-white">
+          <span class="text-black">type of: </span>{{ meanings.partOfSpeech }}
+        </p>
+
+        <p class="text-white" *ngFor="let meaning of meanings.definitions">
+          <span class="text-black">meanings:</span>
+
+          {{ meaning.definition }}
+        </p>
+      </div>
+      <div *ngFor="let source of word.sourceUrls">
+        <p class="text-white">
+          <span class="text-black">source: </span>{{ source }}
+        </p>
+      </div>
+      <div>
+        {{ word.license.name }}
+      </div>
+    </div>
+  </div>
+</div>
