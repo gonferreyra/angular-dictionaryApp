@@ -9,6 +9,8 @@ import { SearchResponse } from '../interfaces/searchResponse';
 export class DictionaryService {
   private apiUrl: string = 'https://api.dictionaryapi.dev/api/v2/entries/en';
 
+  public apiResponse: SearchResponse[] = [];
+
   constructor(private httpClient: HttpClient) {}
 
   searchByWord(term: string | null): Observable<SearchResponse[]> {
@@ -20,5 +22,15 @@ export class DictionaryService {
         return of([]);
       })
     );
+  }
+
+  getSearchValue(value: string | null): void {
+    if (value === '') return;
+    // agregar mensage de error
+    if (this.apiResponse.length >= 1) this.apiResponse = [];
+    this.searchByWord(value).subscribe((word) => {
+      this.apiResponse.push(word[0]);
+      // console.log(this.apiResponse);
+    });
   }
 }
