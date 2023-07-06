@@ -1,46 +1,51 @@
 <div class="">
-  <h4>Search a word</h4>
-  <form class="row g-2 d-flex gap-3">
-    <input
-      [formControl]="searchValue"
-      type="text"
-      class="form-control col-md"
-    />
-    <button
-      (click)="getSearchValue(); $event.preventDefault()"
-      type="submit"
-      class="btn btn-dark col-md"
-    >
-      Search
-    </button>
-  </form>
-  <div>
-    <!-- <dictionary-output-table></dictionary-output-table> -->
-    <div class="mt-4" *ngFor="let word of searchWord">
-      <h2>
-        <span class="text-primary">Word:</span> {{ word.word | uppercase }}
-      </h2>
-      <div>
-        <div *ngIf="word.phonetic">
-          <p><span class="text-primary">phonetic: </span>{{ word.phonetic }}</p>
-        </div>
-        <div *ngFor="let meanings of word.meanings">
-          <p>
-            <span class="text-primary">type of: </span
-            >{{ meanings.partOfSpeech }}
-          </p>
-
-          <p *ngFor="let meaning of meanings.definitions">
-            <span class="text-primary">meanings:</span>
-
-            {{ meaning.definition }}
-          </p>
-        </div>
-        <div *ngFor="let source of word.sourceUrls">
-          <p><span class="text-primary">source: </span>{{ source }}</p>
-        </div>
+  <div class="">
+    <h4>Search a word</h4>
+    <form class="d-flex flex-column gap-3">
+      <input
+        [formControl]="searchValue"
+        type="text"
+        class="form-control col-md"
+      />
+      <button
+        (click)="getSearchValue(); $event.preventDefault()"
+        type="submit"
+        class="btn btn-dark col-md"
+      >
+        Search
+      </button>
+    </form>
+    <div class="apiResponseContainer">
+      <div class="mt-4 mb-4" *ngFor="let word of searchWord">
+        <h2 class="text-white">
+          <span class="text-black">Word:</span> {{ word.word | uppercase }}
+        </h2>
         <div>
-          {{ word.license.name }}
+          <div *ngIf="word.phonetic">
+            <p class="text-white">
+              <span class="text-black">phonetic: </span>{{ word.phonetic }}
+            </p>
+          </div>
+          <div *ngFor="let meanings of word.meanings">
+            <p class="text-white">
+              <span class="text-black">type of: </span
+              >{{ meanings.partOfSpeech }}
+            </p>
+
+            <p class="text-white" *ngFor="let meaning of meanings.definitions">
+              <span class="text-black">meanings:</span>
+
+              {{ meaning.definition }}
+            </p>
+          </div>
+          <div *ngFor="let source of word.sourceUrls">
+            <p class="text-white">
+              <span class="text-black">source: </span>{{ source }}
+            </p>
+          </div>
+          <div>
+            {{ word.license.name }}
+          </div>
         </div>
       </div>
     </div>
