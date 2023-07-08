@@ -4,21 +4,27 @@
       <span class="text-black">Word:</span> {{ word.word | uppercase }}
     </h2>
     <div>
-      <div *ngIf="word.phonetic">
+      <!-- <div *ngFor="let phonetic of word.phonetics">
         <p class="text-white">
-          <span class="text-black">phonetic: </span>{{ word.phonetic }}
+          <span class="text-black">phonetic: </span>{{ phonetic.text }}
         </p>
+      </div> -->
+      <div>
+        <p class="text-black">phonetic:</p>
+        <ul *ngFor="let phonetic of word.phonetics">
+          <li class="text-white">{{ phonetic.text }}</li>
+        </ul>
       </div>
       <div *ngFor="let meanings of word.meanings">
-        <p class="text-white">
-          <span class="text-black">type of: </span>{{ meanings.partOfSpeech }}
+        <p class="text-black">
+          {{ meanings.partOfSpeech }}
         </p>
 
-        <p class="text-white" *ngFor="let meaning of meanings.definitions">
-          <span class="text-black">meanings:</span>
-
-          {{ meaning.definition }}
-        </p>
+        <ul class="text-white" *ngFor="let meaning of meanings.definitions">
+          <li>
+            {{ meaning.definition }}
+          </li>
+        </ul>
       </div>
       <div *ngFor="let source of word.sourceUrls">
         <p class="text-white">
